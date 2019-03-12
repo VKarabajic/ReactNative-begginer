@@ -12,7 +12,9 @@ const app = express();
 
 //parse incoming request data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 // get all todos
 app.get('/', (req, res) => {
@@ -28,8 +30,9 @@ app.listen(PORT, () => {
 });
 
 
-const  db = async () => {
-    try{
+const db = async () => {
+
+    try {
 
         //db connection setup
         const sequelize = new Sequelize('weblica', 'root', 'password', {
@@ -37,24 +40,30 @@ const  db = async () => {
             dialect: 'mysql'
         })
 
-        try{
+        try {
             await sequelize.query('alter table feedback drop foreign key feedback_ibfk_1;')
             await sequelize.query('alter table feedback drop foreign key feedback_ibfk_2;')
             await sequelize.query('DROP TABLE feedback, users, presentations')
 
-        }catch(e){
+        } catch (e) {
             console.log('failed to alter tables(they probably dont exist)')
         }
 
         //drop tables and create new ones
         const user = User(sequelize, Sequelize)
-        await user.sync({force: true})
+        await user.sync({
+            force: true
+        })
 
         const presentation = Presentation(sequelize, Sequelize)
-        await presentation.sync({force: true})
+        await presentation.sync({
+            force: true
+        })
 
         const feedback = Feedback(sequelize, Sequelize)
-        await feedback.sync({force: true})
+        await feedback.sync({
+            force: true
+        })
 
         //fill tables
         await user.create({
@@ -79,7 +88,7 @@ const  db = async () => {
             comment: 'Sve je dobro'
         })
 
-    }catch(e){
+    } catch (e) {
         console.log(e)
     }
 

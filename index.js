@@ -7,19 +7,19 @@ const app = express();
 
 //parse incoming request data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // get all todos
 app.get('/', (req, res) => { //req = object which contains information about our request //res= info about the response and methods we can use to send information back to the client
-  res.status(200).send( //res.send= send back a response to the client, in this canse we send back an object which contains some info
-    "hello"
-  )
+    res.status(200).send( //res.send= send back a response to the client, in this canse we send back an object which contains some info
+        "hello"
+    )
 });
 
 
 const PORT = 3000;
 
 app.listen(PORT, () => { //app.listen creates a web server for us //first paramater is port, second we can call a function of what should happen when server gets created
-  console.log(`server running on port ${PORT}`)
+    console.log(`server running on port ${PORT}`)
 });
 

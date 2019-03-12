@@ -1,23 +1,27 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('feedback', {
       presentation_id: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
           model: 'presentations',
           key: 'id'
-        }
+        },
+        unique: "user_presentation_constraint",
+        primaryKey: true
       },
       user_id: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
           model: 'users',
           key: 'id'
-        }
+        },
+        unique: "user_presentation_constraint",
+        primaryKey: true
       },
       rating: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.INTEGER,
         allowNull: true
       },
       comment: {

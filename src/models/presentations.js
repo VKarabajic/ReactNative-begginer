@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('presentations', {
       id: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
@@ -10,11 +11,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: true
       },
       speaker: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(100),
         allowNull: true
       },
       duration: {
-        type: DataTypes.INTEGER(11),
+        type: DataTypes.INTEGER,
         allowNull: true
       },
       start: {

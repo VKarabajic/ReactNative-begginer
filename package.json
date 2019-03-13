@@ -19,6 +19,7 @@
     "body-parser": "^1.18.3",
     "editorconfig": "^0.15.3",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "mysql": "^2.16.0",
     "sequelizer": "^1.1.3"
   },

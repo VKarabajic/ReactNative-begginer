@@ -1,12 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Sequelize from 'sequelize'
+import config from './config/config.js'
 
 import Db from './db'
 
 
 // Set up the express app
 const app = express();
+
 
 //parse incoming request data
 app.use(bodyParser.json());
@@ -21,7 +23,7 @@ app.get('/', (req, res) => {
     )
 });
 
-const PORT = 3000;
+const PORT = global.globalConfig.port;
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)

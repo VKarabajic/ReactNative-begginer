@@ -1,0 +1,17 @@
+{
+    "development": {
+        "config_id": "development",
+        "app_name": "weblica-app-backend",
+        "port": 8080,
+        "json_indentation": 4,
+        "database": "weblica",
+        "mysql_user": "root",
+        "mysql_password": "password"
+    },
+    "production": {
+        "config_id": "production",
+        "port": 3000,
+        "mysql_user": "weblica",
+        "mysql_password": "w6dL7WGIggJ5meV2Coh6XIxcy09IGc9J"
+    }
+}

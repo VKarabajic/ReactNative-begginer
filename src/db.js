@@ -7,7 +7,7 @@ const db = async (Sequelize) => {
     try {
 
         //db connection setup
-        const sequelize = new Sequelize('weblica', 'root', 'password', {
+        const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
             host: 'localhost',
             dialect: 'mysql'
         })

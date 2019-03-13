@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+const users = (sequelize, DataTypes) => {
     return sequelize.define('users', {
       id: {
         type: DataTypes.INTEGER,
@@ -31,4 +31,4 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
   
-  
+  export default users

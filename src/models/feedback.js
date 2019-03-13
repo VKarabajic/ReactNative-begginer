@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+const feedback = (sequelize, DataTypes) => {
     return sequelize.define('feedback', {
       presentation_id: {
         type: DataTypes.INTEGER,
@@ -33,4 +33,4 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
   
-  
+  export default feedback

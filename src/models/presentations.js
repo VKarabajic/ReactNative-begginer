@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+const presentations = (sequelize, DataTypes) => {
     return sequelize.define('presentations', {
       id: {
         type: DataTypes.INTEGER,
@@ -26,3 +26,5 @@ module.exports = function(sequelize, DataTypes) {
       tableName: 'presentations'
     });
   };
+
+  export default presentations

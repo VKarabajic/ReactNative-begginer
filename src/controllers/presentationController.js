@@ -5,7 +5,7 @@ const getAll = (req, res) => {
 }
 //Display one presentation
 const getOne = (req, res) => {
-    res.send('delete presentation (not implemented)');
+    res.send('presentation with id:' + req.params.id);
 }
 //Update presentation
 const update = (req, res) => {
@@ -13,7 +13,7 @@ const update = (req, res) => {
 }
 //Create presentation
 const create = (req, res) => {
-    res.send('presentation with id:' + req.params.id + ' would have been created');
+    res.send('presentation created (not implemented');
 }
 //Delete presentation
 const deletePresentation = (req, res) => {

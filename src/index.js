@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import userRouter from './routers/userRouter'
 import feedbackRouter from './routers/feedbackRouter'
 import presentationRouter from './routers/presentationRouter'
+import config from './config/config.js'
 import Db from './db'
 
 

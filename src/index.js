@@ -1,27 +1,25 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import Sequelize from 'sequelize'
-import config from './config/config.js'
+import userRouter from './routers/userRouter'
+import feedbackRouter from './routers/feedbackRouter'
 import presentationRouter from './routers/presentationRouter'
-
 import Db from './db'
 
 
 // Set up the express app
-const app = express();
+const app = express()
 
+app.use('/user', userRouter)
+app.use('/feedback', feedbackRouter)
+app.use('/presentation', presentationRouter)
 
-
-//parse incoming request data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use('/presentation', presentationRouter);
 
 const PORT = global.globalConfig.port;
-
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`)
 });

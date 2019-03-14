@@ -1,9 +1,10 @@
-import express from 'express'
 import feedbackController from '../controllers/feedbackController'
-const router = express.Router()
 
+const feedbackRouter = (router) => {
 router.get('/', feedbackController.getAll)
 router.get('/:id', feedbackController.getOne)
 router.post('/create', feedbackController.create)
 
-export default router
+}
+
+export default feedbackRouter

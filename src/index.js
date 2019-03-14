@@ -1,18 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import userRouter from './routers/userRouter'
-import feedbackRouter from './routers/feedbackRouter'
-import presentationRouter from './routers/presentationRouter'
+import setRoutes from './routers/router'
 import config from './config/config.js'
 import Db from './db'
 
 
 // Set up the express app
 const app = express()
-
-app.use('/user', userRouter)
-app.use('/feedback', feedbackRouter)
-app.use('/presentation', presentationRouter)
+//set up routes for endpoints
+setRoutes(express, app)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

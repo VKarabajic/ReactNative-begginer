@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Sequelize from 'sequelize'
 import config from './config/config.js'
+import presentationRouter from './routers/presentationRouter'
 
 import Db from './db'
 
@@ -10,18 +11,14 @@ import Db from './db'
 const app = express();
 
 
+
 //parse incoming request data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-// get hello
-app.get('/', (req, res) => {
-    res.status(200).send(
-        "hello"
-    )
-});
+app.use('/presentation', presentationRouter);
 
 const PORT = global.globalConfig.port;
 

@@ -30,4 +30,4 @@ app.listen(PORT, () => {
 });
 
 //create table and fill it
-Db(Sequelize);
+Db();

@@ -1,8 +1,9 @@
 import User from './models/users'
 import Presentation from './models/presentations'
 import Feedback from './models/feedback'
+import Sequelize from 'sequelize'
 
-const db = async (Sequelize) => {
+const db = async () => {
 
     try {
 

@@ -1,5 +1,5 @@
 const presentations = (sequelize, DataTypes) => {
-    return sequelize.define('presentations', {
+    const Presentation = sequelize.define('presentations', {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -22,9 +22,11 @@ const presentations = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: true
       }
-    }, {
+    },{
       tableName: 'presentations'
     });
+
+    return Presentation
   };
 
   export default presentations

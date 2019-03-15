@@ -1,5 +1,5 @@
 const feedback = (sequelize, DataTypes) => {
-    return sequelize.define('feedback', {
+    const Feedback = sequelize.define('feedbacks', {
       presentation_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -28,9 +28,10 @@ const feedback = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: true
       }
-    }, {
-      tableName: 'feedback'
+    },{
+      tableName: 'feedbacks'
     });
+    return Feedback
   };
   
   export default feedback

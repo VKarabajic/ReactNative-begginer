@@ -15,12 +15,12 @@ const db = async () => {
 
         try {
             //drop foreign key constraints and then drop tables
-            await sequelize.query('alter table feedback drop foreign key feedback_ibfk_1;')
-            await sequelize.query('alter table feedback drop foreign key feedback_ibfk_2;')
-            await sequelize.query('DROP TABLE feedback, users, presentations')
+            await sequelize.query('alter table feedbacks drop foreign key feedbacks_ibfk_1;')
+            await sequelize.query('alter table feedbacks drop foreign key feedbacks_ibfk_2;')
+            await sequelize.query('DROP TABLE feedbacks, users, presentations')
 
         } catch (e) {
-            console.log('failed to alter tables (they probably dont exist)')
+            console.log('Failed to drop tables')
         }
 
         //create new tables
@@ -41,11 +41,19 @@ const db = async () => {
 
         //fill tables
         await user.create({
-            first_name: 'ime',
-            last_name: 'prezime',
-            email: 'mail@mail.com',
+            first_name: 'John',
+            last_name: 'Doe',
+            email: 'john.doe@mail.com',
             phone: '777-7777-7777',
-            annonymous: 1
+            annonymous: 0
+        })
+
+        await user.create({
+                first_name: 'Jane',
+                last_name: 'Doe',
+                email: 'jane.doe@mail.com',
+                phone: '888-8888-8888',
+                annonymous: 0
         })
 
         await presentation.create({

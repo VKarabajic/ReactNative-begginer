@@ -38,6 +38,14 @@ const db = async () => {
             onDelete: 'cascade',
         })
 
+        feedback.belongsTo(user, {
+            foreignKey: 'user_id'
+        })
+
+        feedback.belongsTo(presentation, {
+            foreignKey: 'presentation_id'
+        })
+
         //sync tables
         await user.sync({
             force: true

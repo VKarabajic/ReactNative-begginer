@@ -3,7 +3,7 @@ import User from '../models/users'
 
 //connect to db and return user instance
 const connectToDb = () => {
-    const sequelize = new Sequelize('global.globalConfig.database', global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
+    const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
         host: 'localhost',
         dialect: 'mysql'
     })

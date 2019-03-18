@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import Presentation from '../models/presentations'
+import Feedback from '../models/feedback'
 
 const connectToDb = () => {
     const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
@@ -53,7 +54,13 @@ const update = async (req, res) => {
             start: updatedPresentation.start
         }
 
-        await presentation.update({cleanedUpPresentation}, {where: {id: cleanedUpPresentation.id}})
+        await presentation.update({
+            cleanedUpPresentation
+        }, {
+            where: {
+                id: cleanedUpPresentation.id
+            }
+        })
 
         res.status(200).send(cleanedUpPresentation)
 
@@ -80,7 +87,7 @@ const create = async (req, res) => {
         })
 
         return res.status(201).send(result)
-        
+
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -94,19 +101,21 @@ const deletePresentation = async (req, res) => {
     try {
         const presentation = connectToDb()
         let result = await presentation.findById(req.params.id)
-        if(!result){
-            return res.status(404).send({error: 'presentation with id ' + req.params.id + ' does not exist'});
+        if (!result) {
+            return res.status(404).send({
+                error: 'presentation with id ' + req.params.id + ' does not exist'
+            });
         }
 
-        const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
-            host: 'localhost',
-            dialect: 'mysql'
+        result = await presentation.destroy({
+            where: {
+                id: req.params.id
+            }
         })
 
-        result = await sequelize.query('DELETE FROM feedbacks WHERE presentation_id = '+req.params.id)
-        result = await presentation.destroy({where: {id: req.params.id}})
-        
-        res.status(200).send({success: true})
+        res.status(200).send({
+            success: true
+        })
     } catch (e) {
         console.log(e)
         res.status(500).send({

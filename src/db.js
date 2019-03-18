@@ -25,16 +25,28 @@ const db = async () => {
 
         //create new tables
         const user = User(sequelize, Sequelize)
+        const presentation = Presentation(sequelize, Sequelize)
+        const feedback = Feedback(sequelize, Sequelize)
+
+        //set associations
+        presentation.hasMany(feedback, {
+            foreignKey: 'presentation_id',
+            onDelete: 'cascade',
+        })
+        user.hasMany(feedback, {
+            foreignKey: 'user_id',
+            onDelete: 'cascade',
+        })
+
+        //sync tables
         await user.sync({
             force: true
         })
 
-        const presentation = Presentation(sequelize, Sequelize)
         await presentation.sync({
             force: true
         })
 
-        const feedback = Feedback(sequelize, Sequelize)
         await feedback.sync({
             force: true
         })
@@ -49,11 +61,11 @@ const db = async () => {
         })
 
         await user.create({
-                first_name: 'Jane',
-                last_name: 'Doe',
-                email: 'jane.doe@mail.com',
-                phone: '888-8888-8888',
-                annonymous: 0
+            first_name: 'Jane',
+            last_name: 'Doe',
+            email: 'jane.doe@mail.com',
+            phone: '888-8888-8888',
+            annonymous: 0
         })
 
         await presentation.create({

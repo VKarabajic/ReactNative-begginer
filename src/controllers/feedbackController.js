@@ -54,7 +54,7 @@ const create = async (req, res) => {
         })
 
         return res.status(201).send(result)
-        
+
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -64,4 +64,8 @@ const create = async (req, res) => {
 }
 
 
-export default { getAll , getOne, create}
+export default {
+    getAll,
+    getOne,
+    create
+}

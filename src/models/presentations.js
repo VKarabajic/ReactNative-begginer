@@ -22,9 +22,9 @@ const presentations = (sequelize, DataTypes) => {
         {
             tableName: 'presentations'
         }
-    );
+    )
 
-    return Presentation;
-};
+    return Presentation
+}
 
-export default presentations;
+export default presentations

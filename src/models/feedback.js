@@ -14,8 +14,8 @@ const feedback = (sequelize, DataTypes) => {
         {
             tableName: 'feedbacks'
         }
-    );
-    return Feedback;
-};
+    )
+    return Feedback
+}
 
-export default feedback;
+export default feedback

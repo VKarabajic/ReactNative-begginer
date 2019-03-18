@@ -26,7 +26,7 @@ const users = (sequelize, DataTypes) => {
         {
             tableName: 'users'
         }
-    );
-};
+    )
+}
 
-export default users;
+export default users

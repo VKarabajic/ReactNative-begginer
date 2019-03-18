@@ -2,10 +2,11 @@ import Sequelize from 'sequelize'
 import Feedback from '../models/feedback'
 
 const connectToDb = () => {
+    const dbConfig = global.config
     const sequelize = new Sequelize(
-        global.config.database,
-        global.config.mysql_user,
-        global.config.mysql_password,
+        dbConfig.database,
+        dbConfig.mysql_user,
+        dbConfig.mysql_password,
         {
             host: 'localhost',
             dialect: 'mysql'

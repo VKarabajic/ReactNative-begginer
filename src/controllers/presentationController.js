@@ -3,21 +3,23 @@ import Presentation from '../models/presentations'
 import Feedback from '../models/feedback'
 
 const connectToDb = () => {
-    const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
-        host: 'localhost',
-        dialect: 'mysql'
-    })
-
+    const sequelize = new Sequelize(
+        global.config.database,
+        global.config.mysql_user,
+        global.config.mysql_password,
+        {
+            host: 'localhost',
+            dialect: 'mysql'
+        }
+    )
     return Presentation(sequelize, Sequelize)
 }
-
 
 const getAll = async (req, res) => {
     try {
         const presentation = connectToDb()
         const result = await presentation.findAll()
         res.send(result)
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -25,7 +27,6 @@ const getAll = async (req, res) => {
         })
     }
 }
-
 
 const getOne = async (req, res) => {
     try {
@@ -40,7 +41,6 @@ const getOne = async (req, res) => {
     }
 }
 
-
 const update = async (req, res) => {
     try {
         const presentation = connectToDb()
@@ -54,16 +54,18 @@ const update = async (req, res) => {
             start: updatedPresentation.start
         }
 
-        await presentation.update({
-            cleanedUpPresentation
-        }, {
-            where: {
-                id: cleanedUpPresentation.id
+        await presentation.update(
+            {
+                cleanedUpPresentation
+            },
+            {
+                where: {
+                    id: cleanedUpPresentation.id
+                }
             }
-        })
+        )
 
         res.status(200).send(cleanedUpPresentation)
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -72,12 +74,11 @@ const update = async (req, res) => {
     }
 }
 
-
 const create = async (req, res) => {
     try {
         const presentation = connectToDb()
         let newPresentation = req.body
-        let result;
+        let result
 
         result = await presentation.create({
             name: newPresentation.name,
@@ -87,7 +88,6 @@ const create = async (req, res) => {
         })
 
         return res.status(201).send(result)
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -96,15 +96,14 @@ const create = async (req, res) => {
     }
 }
 
-
 const deletePresentation = async (req, res) => {
     try {
         const presentation = connectToDb()
         let result = await presentation.findById(req.params.id)
         if (!result) {
             return res.status(404).send({
-                error: 'presentation with id ' + req.params.id + ' does not exist'
-            });
+                error: `presentation with id ${req.params.id} does not exist`
+            })
         }
 
         result = await presentation.destroy({
@@ -122,7 +121,6 @@ const deletePresentation = async (req, res) => {
             error: 'unexpected error'
         })
     }
-
 }
 
 export default {

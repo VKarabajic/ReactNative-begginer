@@ -17,9 +17,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.18.3",
-    "editorconfig": "^0.15.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
+    "prettier": "^1.16.4",
     "sequelizer": "^1.1.3"
   },
   "devDependencies": {

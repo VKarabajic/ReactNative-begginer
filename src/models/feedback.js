@@ -1,17 +1,21 @@
 const feedback = (sequelize, DataTypes) => {
-    const Feedback = sequelize.define('feedbacks', {
-        rating: {
-            type: DataTypes.INTEGER,
-            allowNull: true
+    const Feedback = sequelize.define(
+        'feedbacks',
+        {
+            rating: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            },
+            comment: {
+                type: DataTypes.TEXT,
+                allowNull: true
+            }
         },
-        comment: {
-            type: DataTypes.TEXT,
-            allowNull: true
+        {
+            tableName: 'feedbacks'
         }
-    }, {
-        tableName: 'feedbacks'
-    });
-    return Feedback
+    );
+    return Feedback;
 };
 
-export default feedback
+export default feedback;

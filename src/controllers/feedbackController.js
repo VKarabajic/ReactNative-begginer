@@ -2,21 +2,24 @@ import Sequelize from 'sequelize'
 import Feedback from '../models/feedback'
 
 const connectToDb = () => {
-    const sequelize = new Sequelize(global.globalConfig.database, global.globalConfig.mysql_user, global.globalConfig.mysql_password, {
-        host: 'localhost',
-        dialect: 'mysql'
-    })
+    const sequelize = new Sequelize(
+        global.config.database,
+        global.config.mysql_user,
+        global.config.mysql_password,
+        {
+            host: 'localhost',
+            dialect: 'mysql'
+        }
+    )
 
     return Feedback(sequelize, Sequelize)
 }
-
 
 const getAll = async (req, res) => {
     try {
         const feedback = connectToDb()
         const result = await feedback.findAll()
         res.send(result)
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -24,7 +27,6 @@ const getAll = async (req, res) => {
         })
     }
 }
-
 
 const getOne = async (req, res) => {
     try {
@@ -39,12 +41,11 @@ const getOne = async (req, res) => {
     }
 }
 
-
 const create = async (req, res) => {
     try {
         const feedback = connectToDb()
         let newFeedback = req.body
-        let result;
+        let result
 
         result = await feedback.create({
             presentation_id: newFeedback.presentation_id,
@@ -54,7 +55,6 @@ const create = async (req, res) => {
         })
 
         return res.status(201).send(result)
-
     } catch (e) {
         console.log(e)
         res.status(500).send({
@@ -62,7 +62,6 @@ const create = async (req, res) => {
         })
     }
 }
-
 
 export default {
     getAll,

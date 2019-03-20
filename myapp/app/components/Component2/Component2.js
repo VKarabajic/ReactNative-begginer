@@ -1,7 +1,25 @@
 import React, { Component } from "react";
-import { AppRegistry, Text, View, StyleSheet } from "react-native";
+import {
+  Alert,
+  AppRegistry,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  TouchableNativeFeedback,
+  TouchableWithoutFeedback,
+  View
+} from "react-native";
 
 export default class Component2 extends Component {
+  onPress() {
+    Alert.alert("you pressed 1!");
+  }
+  onPress2() {
+    Alert.alert("you pressed 2!");
+  }
+
   render() {
     return (
       <View>
@@ -9,12 +27,20 @@ export default class Component2 extends Component {
           <Text style={styles.myText}>Hello, you</Text>
         </View>
         <View style={styles.container}>
-          <View style={styles.v1}>
-            <Text>View 1</Text>
-          </View>
-          <View style={styles.v2}>
-            <Text>View 2</Text>
-          </View>
+          <TouchableHighlight
+            style={styles.v1}
+            onPress={this.onPress}
+            underlay="blue"
+          >
+            <View>
+              <Text>Press me!</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableOpacity style={styles.v2} onPress={this.onPress2}>
+            <View>
+              <Text>Press me 2!</Text>
+            </View>
+          </TouchableOpacity>
           <View style={styles.v3}>
             <Text style={styles.vText}>View 3</Text>
           </View>
@@ -30,20 +56,24 @@ const styles = StyleSheet.create({
   },
 
   myView: {
-    backgroundColor: "skyblue"
+    backgroundColor: "skyblue",
+    padding: 50,
+    justifyContent: "center",
+    alignItems: "center"
   },
   container: {
-    flexDirection: "column",
-    height: 100
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   v1: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "dodgerblue",
     padding: 10
   },
   v2: {
     flex: 1,
-    backgroundColor: "green",
+    backgroundColor: "goldenrod",
     padding: 10
   },
   v3: {

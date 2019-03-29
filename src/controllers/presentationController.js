@@ -32,7 +32,7 @@ const getAll = async (req, res) => {
 const getOne = async (req, res) => {
     try {
         const presentation = connectToDb()
-        const result = await presentation.findById(req.params.id)
+        const result = await presentation.findByPk(req.params.id)
         res.send(result)
     } catch (e) {
         console.log(e)

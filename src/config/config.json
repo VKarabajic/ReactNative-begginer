@@ -4,9 +4,9 @@
         "app_name": "weblica-app-backend",
         "port": 8080,
         "json_indentation": 4,
-        "database": "weblica",
+        "database": "weblica_app",
         "mysql_user": "root",
-        "mysql_password": "password"
+        "mysql_password": ""
     },
     "production": {
         "config_id": "production",

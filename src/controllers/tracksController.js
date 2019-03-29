@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import Feedback from '../models/feedback'
+import Tracks from '../models/tracks'
 
 const connectToDb = () => {
     const dbConfig = global.config
@@ -13,13 +13,13 @@ const connectToDb = () => {
         }
     )
 
-    return Feedback(sequelize, Sequelize)
+    return Tracks(sequelize, Sequelize)
 }
 
 const getAll = async (req, res) => {
     try {
-        const feedback = connectToDb()
-        const result = await feedback.findAll()
+        const tracks = connectToDb()
+        const result = await tracks.findAll()
         res.send(result)
     } catch (e) {
         console.log(e)
@@ -31,8 +31,8 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
     try {
-        const feedback = connectToDb()
-        const result = await feedback.findByPk(req.params.id)
+        const tracks = connectToDb()
+        const result = await tracks.findByPk(req.params.id)
         res.send(result)
     } catch (e) {
         console.log(e)
@@ -44,15 +44,14 @@ const getOne = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const feedback = connectToDb()
-        let newFeedback = req.body
+        const tracks = connectToDb()
+        let newtracks = req.body
         let result
 
-        result = await feedback.create({
-            presentation_id: newFeedback.presentation_id,
-            user_id: newFeedback.user_id,
-            rating: newFeedback.rating,
-            comment: newFeedback.comment
+        result = await tracks.create({
+            track1: newtracks.track1,
+            track2: newtracks.track2,
+            track3: newtracks.track3
         })
 
         return res.status(201).send(result)

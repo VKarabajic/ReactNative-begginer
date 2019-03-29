@@ -1,6 +1,7 @@
 import User from './models/users'
 import Presentation from './models/presentations'
 import Feedback from './models/feedback'
+import Tracks from './models/tracks'
 import Sequelize from 'sequelize'
 
 const db = async () => {
@@ -25,7 +26,9 @@ const db = async () => {
             await sequelize.query(
                 'alter table feedbacks drop foreign key feedbacks_ibfk_2;'
             )
-            await sequelize.query('DROP TABLE feedbacks, users, presentations')
+            await sequelize.query(
+                'DROP TABLE feedbacks, users, presentations, tracks'
+            )
         } catch (e) {
             console.log('Failed to drop tables')
         }
@@ -34,6 +37,7 @@ const db = async () => {
         const user = User(sequelize, Sequelize)
         const presentation = Presentation(sequelize, Sequelize)
         const feedback = Feedback(sequelize, Sequelize)
+        const tracks = Tracks(sequelize, Sequelize)
 
         //set associations
         presentation.hasMany(feedback, {
@@ -53,6 +57,14 @@ const db = async () => {
             foreignKey: 'presentation_id'
         })
 
+        user.hasMany(tracks, {
+            foreignKey: 'user_id'
+        })
+
+        tracks.belongsTo(user, {
+            foreignKey: 'user_id'
+        })
+
         //sync tables
         await user.sync({
             force: true
@@ -63,6 +75,10 @@ const db = async () => {
         })
 
         await feedback.sync({
+            force: true
+        })
+
+        await tracks.sync({
             force: true
         })
 
@@ -90,12 +106,36 @@ const db = async () => {
             start: Date.now()
         })
 
+        await presentation.create({
+            name: 'prezentacija 2',
+            speaker: 'Vanda Karabajic',
+            duration: 40,
+            start: Date.now()
+        })
+
         await feedback.create({
             presentation_id: 1,
             user_id: 1,
             rating: 10,
             comment: 'Sve je dobro'
         })
+
+        await tracks.create({
+            track1: true,
+            track2: false,
+            track3: false
+        })
+        await tracks.create({
+            track1: false,
+            track2: false,
+            track3: true
+        })
+        await tracks.create({
+            track1: false,
+            track2: true,
+            track3: false
+        })
+
         console.log('OK')
     } catch (e) {
         console.log(e)
